@@ -6,25 +6,37 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
 import { ContactPage } from 'pages/ContactPage';
 
-
 export const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<PublicRoutes />}>
-          <Route path="register" element={<RestrictedRoutes redirectTo="/contact">
-            <RegisterPage />
-          </RestrictedRoutes>} />
-          <Route path="login" element={<RestrictedRoutes redirectTo="/contact">
-            <LoginPage />
-          </RestrictedRoutes>} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoutes redirectTo="/contact">
+                <RegisterPage />
+              </RestrictedRoutes>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoutes redirectTo="/contact">
+                <LoginPage />
+              </RestrictedRoutes>
+            }
+          />
         </Route>
-        <Route path="/contacts" element={<PrivateRoutes redirectTo="/login">
-          <ContactPage />
-        </PrivateRoutes>} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoutes redirectTo="/login">
+              <ContactPage />
+            </PrivateRoutes>
+          }
+        />
       </Routes>
     </Router>
   );
-
-}
-
+};
