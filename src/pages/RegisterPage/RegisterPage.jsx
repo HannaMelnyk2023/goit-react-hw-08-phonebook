@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import { register } from "../../redux/auth/auth-operations";
+import { register } from "../../redux/contacts/operations";
 
 
 export default function RegisterPage() {

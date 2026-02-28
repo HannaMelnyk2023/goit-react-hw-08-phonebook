@@ -1,20 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { RestrictedRoutes } from 'routes/RestrictedRoutes';
-import { PrivateRoutes } from 'routes/PrivateRouts';
-import { PublicRoutes } from 'routes/PublicRoutes';
-import { RegisterPage } from 'pages/RegisterPage';
-import { LoginPage } from 'pages/LoginPage';
-import { ContactPage } from 'pages/ContactPage';
+import RestrictedRoutes from 'routes/RestrictedRoutes';
+import PrivateRoutes from 'routes/PrivateRoutes';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import ContactsPage from './pages/ContactsPage/ContactsPage';
+import Navigation from 'components/Navigation/Navigation';
 
 export const App = () => {
   return (
     <Router>
+      <Navigation />
       <Routes>
-        <Route path="/" element={<PublicRoutes />}>
           <Route
             path="register"
             element={
-              <RestrictedRoutes redirectTo="/contact">
+              <RestrictedRoutes redirectTo="/contacts">
                 <RegisterPage />
               </RestrictedRoutes>
             }
@@ -22,17 +22,17 @@ export const App = () => {
           <Route
             path="login"
             element={
-              <RestrictedRoutes redirectTo="/contact">
+              <RestrictedRoutes redirectTo="/contacts">
                 <LoginPage />
               </RestrictedRoutes>
             }
           />
-        </Route>
+
         <Route
           path="/contacts"
           element={
             <PrivateRoutes redirectTo="/login">
-              <ContactPage />
+              <ContactsPage />
             </PrivateRoutes>
           }
         />
