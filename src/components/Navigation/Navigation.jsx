@@ -1,29 +1,57 @@
 import { NavLink } from 'react-router-dom';
-import { Provider, useSelector } from 'react-redux';
-import css from './Navigation.module.css';
+import { useSelector } from 'react-redux';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { Flex, Button } from '@chakra-ui/react';
 
 export default function Navigation() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
-    <nav className={css.nav}>
+    <Flex
+      as="nav"
+      justify="flex-end"
+      align="center"
+      gap={4}
+      px={8}
+      py={4}
+      bg="teal.500"
+      boxShadow="md"
+    >
       {isLoggedIn ? (
         <>
           <UserMenu />
-          <NavLink to="/contacts" className={css.link}>
+          <Button
+            as={NavLink}
+            to="/contacts"
+            variant="ghost"
+            color="white"
+            _hover={{ bg: 'teal.600' }}
+          >
             Contacts
-          </NavLink>
+          </Button>
         </>
       ) : (
         <>
-          <NavLink to="/register" className={css.link}>
+          <Button
+            as={NavLink}
+            to="/register"
+            variant="ghost"
+            color="white"
+            _hover={{ bg: 'teal.600' }}
+          >
             Register
-          </NavLink>
-          <NavLink to="/login" className={css.link}>
+          </Button>
+
+          <Button
+            as={NavLink}
+            to="/login"
+            variant="ghost"
+            color="white"
+            _hover={{ bg: 'teal.600' }}
+          >
             Log In
-          </NavLink>
+          </Button>
         </>
       )}
-    </nav>
+    </Flex>
   );
 }

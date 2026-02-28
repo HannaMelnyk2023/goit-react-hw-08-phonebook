@@ -7,11 +7,17 @@ const contactsSlice = createSlice({
         items: [],
         isLoading: false,
         error: null,
+        filter: '',
     },
-    extraReducers: (builder) => {
+    reducers: {
+        setFilter: (state, action) => {
+            state.filter = action.payload;
+        },
+    },
+    extraReducers: builder => {
         builder
             // fetchContacts
-            .addCase(fetchContacts.pending, (state) => {
+            .addCase(fetchContacts.pending, state => {
                 state.isLoading = true;
                 state.error = null;
             })
@@ -24,7 +30,7 @@ const contactsSlice = createSlice({
                 state.error = action.payload;
             })
             // addContact
-            .addCase(addContact.pending, (state) => {
+            .addCase(addContact.pending, state => {
                 state.isLoading = true;
                 state.error = null;
             })
@@ -37,13 +43,15 @@ const contactsSlice = createSlice({
                 state.error = action.payload;
             })
             // deleteContact
-            .addCase(deleteContact.pending, (state) => {
+            .addCase(deleteContact.pending, state => {
                 state.isLoading = true;
                 state.error = null;
             })
             .addCase(deleteContact.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.items = state.items.filter(contact => contact.id !== action.payload);
+                state.items = state.items.filter(
+                    contact => contact.id !== action.payload
+                );
             })
             .addCase(deleteContact.rejected, (state, action) => {
                 state.isLoading = false;
@@ -52,3 +60,4 @@ const contactsSlice = createSlice({
     },
 });
 export const contactsReducer = contactsSlice.reducer;
+export const { setFilter } = contactsSlice.actions;

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
-import css from './ContactForm.module.css';
+import { Box, Input, Button, VStack } from '@chakra-ui/react';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -16,10 +16,16 @@ export default function ContactForm() {
     form.reset();
   };
   return (
-    <form onSubmit={handleSubmit} className={css.form}>
-      <input name="name" type="text" placeholder="Name" required />
-      <input name="number" type="tel" placeholder="Phone number" required />
-      <button type="submit">Add contact</button>
-    </form>
+    <Box mb={6}>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4}>
+          <Input name="name" type="text" placeholder="Name" required />
+          <Input name="number" type="tel" placeholder="Phone number" required />
+          <Button type="submit" colorScheme="teal" width="full">
+            Add contact
+          </Button>
+        </VStack>
+      </form>
+    </Box>
   );
 }

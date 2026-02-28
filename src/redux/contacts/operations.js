@@ -5,13 +5,14 @@ export const register = createAsyncThunk(
     'auth/register',
 
     async (credentials, thunkAPI) => {
-        console.log('REGISTER PAYLOAD:', credentials)
+        console.log('REGISTER PAYLOAD:', credentials);
         try {
             const response = await instance.post('/users/signup', credentials);
             setAuthHeader(response.data.token);
 
             return response.data;
         } catch (error) {
+            console.log('REGISTER ERROR:', error.response?.data);
             return thunkAPI.rejectWithValue(error.message);
         }
     }
