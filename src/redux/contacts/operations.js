@@ -3,10 +3,13 @@ import { instance, setAuthHeader, clearAuthHeader } from '../../service/api';
 
 export const register = createAsyncThunk(
     'auth/register',
+
     async (credentials, thunkAPI) => {
+        console.log('REGISTER PAYLOAD:', credentials)
         try {
             const response = await instance.post('/users/signup', credentials);
             setAuthHeader(response.data.token);
+
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
@@ -62,8 +65,7 @@ export const fetchContacts = createAsyncThunk(
         try {
             const response = await instance.get('/contacts');
             return response.data;
-        }
-        catch (error) {
+        } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -75,8 +77,7 @@ export const addContact = createAsyncThunk(
         try {
             const response = await instance.post('/contacts', contact);
             return response.data;
-        }
-        catch (error) {
+        } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -88,8 +89,7 @@ export const deleteContact = createAsyncThunk(
         try {
             await instance.delete(`/contacts/${contactId}`);
             return contactId;
-        }
-        catch (error) {
+        } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -99,25 +99,13 @@ export const updateContact = createAsyncThunk(
     'contacts/updateContact',
     async ({ id, name, number }, thunkAPI) => {
         try {
-            const response = await instance.patch(`/contacts/${id}`, { name, number });
+            const response = await instance.patch(`/contacts/${id}`, {
+                name,
+                number,
+            });
             return response.data;
-        }
-        catch (error) {
-
+        } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
         }
     }
 );
-
-export const updateFilter = createAsyncThunk(
-    'contacts/updateFilter',
-    async (filter, thunkAPI) => {
-        try {
-            return filter;
-        }
-        catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
-        }
-    }
-);
-

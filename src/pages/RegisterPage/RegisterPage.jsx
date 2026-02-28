@@ -21,8 +21,8 @@ export default function RegisterPage() {
         return (
             <form onSubmit={handleSubmit}>
                 <input name = "name" type="text" placeholder="Name" required/>
-                <input name = "email" type="email" placeholder="Email" required/>
-                <input name="password" type="password" placeholder="Password" required />
+                <input name = "email" type="email" placeholder="Email" required autoComplete="username"/>
+                <input name="password" type="password" placeholder="Password" required autoComplete="new-password" />
                 <button type="submit">Register</button>
             </form>
         );

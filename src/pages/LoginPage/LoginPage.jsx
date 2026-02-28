@@ -16,8 +16,8 @@ export default function LoginPage() {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input name="email" type="email" placeholder="Email" required />
-      <input name="password" type="password" placeholder="Password" required />
+      <input name="email" type="email" placeholder="Email" required autoComplete="username"/>
+      <input name="password" type="password" placeholder="Password" required autoComplete='current-password' />
       <button type="submit">Log In</button>
     </form>
   );

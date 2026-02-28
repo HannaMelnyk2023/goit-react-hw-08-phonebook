@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RestrictedRoutes from 'routes/RestrictedRoutes';
 import PrivateRoutes from 'routes/PrivateRoutes';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
@@ -8,25 +8,33 @@ import Navigation from 'components/Navigation/Navigation';
 
 export const App = () => {
   return (
-    <Router>
+    <BrowserRouter basename="/goit-react-hw-08-phonebook">
       <Navigation />
       <Routes>
-          <Route
-            path="register"
-            element={
-              <RestrictedRoutes redirectTo="/contacts">
-                <RegisterPage />
-              </RestrictedRoutes>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <RestrictedRoutes redirectTo="/contacts">
-                <LoginPage />
-              </RestrictedRoutes>
-            }
-          />
+        <Route
+          path="/"
+          element={
+            <RestrictedRoutes redirectTo="/contacts">
+              <RegisterPage />
+            </RestrictedRoutes>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoutes redirectTo="/contacts">
+              <RegisterPage />
+            </RestrictedRoutes>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoutes redirectTo="/contacts">
+              <LoginPage />
+            </RestrictedRoutes>
+          }
+        />
 
         <Route
           path="/contacts"
@@ -37,6 +45,6 @@ export const App = () => {
           }
         />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };

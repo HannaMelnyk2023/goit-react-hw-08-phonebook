@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import css from './Navigation.module.css';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 
